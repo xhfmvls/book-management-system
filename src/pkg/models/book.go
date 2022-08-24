@@ -9,9 +9,12 @@ var db *gorm.DB
 
 type Book struct {
 	gorm.Model
-	Name        string `gorm:""json:"name"`
+	Name        string `gorm:"" json:"name"`
 	Author      string `json:"author"`
 	Publication string `json:"publication"`
+	// Name        string `gorm:""json:"name"`
+	// Author      string `json:"author"`
+	// Publication string `json:"publication"`
 }
 
 func init() {
@@ -20,10 +23,16 @@ func init() {
 	db.AutoMigrate(&Book{})
 }
 
-func (book *Book) CreateBook() *Book {
-	db.NewRecord(book)
-	db.Create(book)
-	return book
+// func (book *Book) CreateBook() *Book {
+// 	db.NewRecord(book)
+// 	db.Create(&book)
+// 	return book
+// }
+
+func (b *Book) CreateBook() *Book{
+	db.NewRecord(b)
+	db.Create(&b)
+	return b
 }
 
 func GetAllBooks() []Book {

@@ -34,11 +34,20 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
-func CreateBook(w http.ResponseWriter, r *http.Request) {
-	CreatedBook := &models.Book{}
-	utils.ParseBody(r, CreatedBook)
-	book := CreatedBook.CreateBook()
-	res, _ := json.Marshal(book)
+// func CreateBook(w http.ResponseWriter, r *http.Request) {
+// 	CreateBook := &models.Book{}
+// 	utils.ParseBody(r, CreateBook)
+// 	book := CreateBook.CreateBook()
+// 	res, _ := json.Marshal(book)
+// 	w.WriteHeader(http.StatusOK)
+// 	w.Write(res)
+// }
+
+func CreateBook(w http.ResponseWriter, r *http.Request){
+	CreateBook := &models.Book{}
+	utils.ParseBody(r, CreateBook)
+	b:= CreateBook.CreateBook()
+	res, _ := json.Marshal(b)
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
 }
